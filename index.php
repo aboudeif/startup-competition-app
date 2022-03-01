@@ -33,7 +33,7 @@
       $data = json_decode($data_file,true);
       # قراءة البيانات الخاصة بالشركات المشتركة في المنافسة من ملف خارجي وتخزينها في مصفوفة
       $info_file = file_get_contents('json/competition.json');
-      define('INFO', json_decode($info_file,true);
+      define('INFO', json_decode($info_file,true));
       
       echo "<section class='about'><h2>".$info['title']."</h2><img src='".$info['logo']."' /><h2>عن المسابقة</h2><p>".$info['info']."</p></section>";
 	       

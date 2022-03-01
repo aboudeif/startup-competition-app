@@ -65,8 +65,7 @@
             echo "<div class='element' dir='rtl'><span>1- ". $winner_one . " </span><small> %".min($winner)." </small></div>";
           echo "</section>";
 
-          
-          
+	echo "<script>build(-1,' رسالة التهنئة ');</script>";
         echo "<section><div class='message'><div class='cup'>&#129351;</div> تهانينا لشركة <b>&nbsp;&nbsp;".$winner_one."&nbsp;&nbsp;</b>  &#11088;&#127881;الفوز بالمركز الأول &#9996 </div></section>";
         break;
         }
@@ -75,6 +74,7 @@
           unset($winner['all_companies_failed']);
           if(count($winner) == 1){ 
             
+	    echo "<script>build(-1,' رسالة التهنئة ');</script>";
             echo "<section><div class='message'><div class='cup'>&#129351;</div> تهانينا لشركة <b>&nbsp;&nbsp;".key($winner)."&nbsp;&nbsp;</b>  &#11088;&#127881;الفوز بالمركز الأول &#9996 </div></section>";
             break;
           }

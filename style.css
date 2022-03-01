@@ -41,6 +41,7 @@ section
  text-align: center;
  padding: 25px;
  margin: 25px;
+ margin-top: 200px;
  font-size: 24pt;
  padding-bottom: 50px;
  box-shadow: 0px 0px 30px #505555;
@@ -168,7 +169,7 @@ p
   font-weight: 400;
   margin: 25px;
 }
-img
+.about > img
 {
   width: 300px;
   height: 300px;
@@ -176,16 +177,17 @@ img
 .partner
 {
   background-color: gray;
-  padding: 15px;
+  padding-top: 15px;
   color: white;
   text-align: center;
   width: 100%;
+  margin-top: 200px;
 }
 .partner > h2
 {
   background-color: #dedede;
   width: max-content;
-  padding: 5px;
+  margin-top: 25px;
   padding-left: 15px;
   border-radius: 25px 0 0 25px;
   color: #06ac6d;
@@ -198,5 +200,11 @@ img
   flex-direction: row;
   width: 100%;
   align-items: center;
-  margin: 30px;
+  justify-content: center;
+  margin-top: 30px;
+  
+}
+.partner-item > p
+{
+  text-size: 8pt;
 }

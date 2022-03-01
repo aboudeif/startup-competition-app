@@ -59,7 +59,7 @@
           foreach($winner as $key => $value){
             if($key == 'all_companies_failed' || $key == 'stage_title')
               continue;
-            echo "<div class='element' dir='rtl'><span>".$sub_counter++ ."- ". $key . " </span><small> ".$value."% </small></div>";
+            echo "<div class='element' dir='rtl'><span>&#129351; ".$sub_counter++ ."- ". $key . " </span><small> ".$value."% </small></div>";
           }
           echo "</section>";
         if($winner['all_companies_failed']){
@@ -68,7 +68,7 @@
           $winner_one = array_search(min($winner),$winner);
 
         echo "<section><div class='stage' id='_".$counter++."'><h3> الشركة الفائزة </h3></div>" ;
-            echo "<div class='element' dir='rtl'><span>1- ". $winner_one . " </span><small> %".min($winner)." </small></div>";
+            echo "<div class='element' dir='rtl'><span>&#129351; 1- ". $winner_one . " </span><small> %".min($winner)." </small></div>";
           echo "</section>";
 
 	echo "<script>build(-1,' رسالة التهنئة ');</script>";
@@ -106,7 +106,7 @@
       }
     echo "<section class='partner'><h2>الشركاء</h2><div class='container'>";
     foreach($info['partner'] as $key=>$value)
-    	echo "<span class='partner-item'><img src='".$value."' width='150px' height='100px'><p>".$key."</p></span>";
+    	echo "<span class='partner-item'><img src='".$value."' height='100px'><p>".$key."</p></span>";
     echo "</div></section>";
     ?>
   </body>

@@ -59,7 +59,7 @@
           foreach($winner as $key => $value){
             if($key == 'all_companies_failed' || $key == 'stage_title')
               continue;
-            echo "<div class='element' dir='rtl'><span>&#129351; ".$sub_counter++ ."- ". $key . " </span><small> ".$value."% </small></div>";
+            echo "<div class='element' dir='rtl'><span>&#11088; ".$sub_counter++ ."- ". $key . " </span><small> ".$value."% </small></div>";
           }
           echo "</section>";
         if($winner['all_companies_failed']){
@@ -68,7 +68,7 @@
           $winner_one = array_search(min($winner),$winner);
 
         echo "<section><div class='stage' id='_".$counter++."'><h3> الشركة الفائزة </h3></div>" ;
-            echo "<div class='element' dir='rtl'><span>&#129351; 1- ". $winner_one . " </span><small> %".min($winner)." </small></div>";
+            echo "<div class='element' dir='rtl'><span>&#11088; 1- ". $winner_one . " </span><small> %".min($winner)." </small></div>";
           echo "</section>";
 
 	echo "<script>build(-1,' رسالة التهنئة ');</script>";

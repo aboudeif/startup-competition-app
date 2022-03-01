@@ -28,15 +28,18 @@
     </nav>
    <!-- التعريف بالمسابقة -->
     <?php
-	$json_file = file_get_contents('competition.json');
-	$info = json_decode($json_file,true);
+      # قراءة البيانات الخاصة بالشركات المشتركة في المنافسة من ملف خارجي وتخزينها في مصفوفة
+      $data_file = file_get_contents('json/companies_data.json');
+      $data = json_decode($data_file,true);
+      # قراءة البيانات الخاصة بالشركات المشتركة في المنافسة من ملف خارجي وتخزينها في مصفوفة
+      $info_file = file_get_contents('json/competition.json');
+      const INFO = json_decode($info_file,true);
+      
       echo "<section class='about'><h2>".$info['title']."</h2><img src='".$info['logo']."' /><h2>عن المسابقة</h2><p>".$info['info']."</p></section>";
 	       
-      define('NOWINNER', 'لم تجتز أي شركة عتبة المرحلة');
-      define('WINNER', 'الشركات الفائزة في المرحلة');
-    # قراءة البيانات الخاصة بالشركات المشتركة في المنافسة من ملف خارجي وتخزينها في مصفوفة
-      $json_file = file_get_contents('companies_data.json');
-      $data = json_decode($json_file,true);
+//       define('NOWINNER', 'لم تجتز أي شركة عتبة المرحلة');
+//       define('WINNER', 'الشركات الفائزة في المرحلة');
+    
 
       
 	  
@@ -95,12 +98,12 @@
             $winner[$key] = $data[$key];
         }
         if(is_countable($winner)){
-          $winner['stage_title'] = WINNER;
+          $winner['stage_title'] = INFO['winners'];
           return $winner;
         }
         else{
           $data['all_companies_failed'] = true;
-          $data['stage_title'] = NOWINNER;
+          $data['stage_title'] = INFO['no_winner'];
           return $data;
         }
       }

@@ -106,7 +106,7 @@
       }
     echo "<section class='partner'><h2>الشركاء</h2><div class='container'>";
     foreach($info['partner'] as $key=>$value)
-    	echo "<span class='partner-item'><img src='".$value."' height='100px'><p>".$key."</p></span>";
+    	echo "<span class='partner-item'><img src='".$value."' height='80px'><p>".$key."</p></span>";
     echo "</div></section>";
     ?>
   </body>

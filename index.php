@@ -11,7 +11,7 @@
   <body dir="rtl">
     <script>
       function build(counter,title) {
-        document.getElementById('menu').innerHTML += "<a href='#_"+ counter +"'><div class='menu-item'> "+ title +" [ "+ counter +" ] </div></a>";
+        document.getElementById('menu').innerHTML += "<a href='#_"+ counter +"'><div class='menu-item'> "+ title + counter > 1 ? " [ "+ counter +" ]" : ""; +" </div></a>";
       }
       function menu() {
         var menu = document.getElementById('menu');
@@ -32,8 +32,7 @@
     # قراءة البيانات الخاصة بالشركات المشتركة في المنافسة من ملف خارجي وتخزينها في مصفوفة
       $json_file = file_get_contents('companies_data.json');
       $data = json_decode($json_file,true);
-
-      #---------------------------------------
+	  
       # طباعة اسماء الشركات المسجلة في المسابقة
       echo "<script>build(0,' اسماء الشركات المسجلة في المسابقة');</script>";
         echo "<section><div class='stage' id='_0'><h3>اسماء الشركات المسجلة في المسابقة</h3></div>" ;
@@ -41,11 +40,10 @@
           foreach($data as $key => $value)
             echo "<div class='element' dir='rtl'><span>".$sub_counter++ ."- ". $key . " </span></div>";
           echo "</section>";
-      #---------------------------------------
+
       # الحلقة التكرارية المسؤولة عن التقييم المتكرر للشركات حتي فوز شركة واحدة
       for($winner = $data,$counter = 1,$success_rate = 50; $success_rate > 0; $success_rate /= 2){
         # استدعاء الدالة المسؤولة عن تقييم الشركات و اختيار الشركات الناجحة
-        
         $winner = successful_companies($winner,$success_rate);
         $title = $winner['stage_title'];
         echo "<script>build(".$counter.",'". $title."');</script>";

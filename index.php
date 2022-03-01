@@ -11,7 +11,8 @@
   <body dir="rtl">
     <script>
       function build(counter,title) {
-        document.getElementById('menu').innerHTML += "<a href='#_"+ counter +"'><div class='menu-item'> "+ title + counter > 1 ? " [ "+ counter +" ]" : ""; +" </div></a>";
+        counter = counter >= 1 ? " [ "+ counter +" ]" : "";
+        document.getElementById('menu').innerHTML += "<a href='#_"+ counter +"'><div class='menu-item'> "+ title + counter +" </div></a>";
       }
       function menu() {
         var menu = document.getElementById('menu');

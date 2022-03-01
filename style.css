@@ -1,0 +1,133 @@
+*
+{
+  padding: 0;
+  margin: 0;
+}
+
+html,body
+{
+  width: 100%;
+}
+
+nav
+{
+  padding: 20px;
+}
+
+body
+{
+  font-family: 'Tajawal', sans-serif;
+  font-size: 14pt;
+  background-color: lightgreen;
+}
+
+section
+{
+  width: 100%;
+  opacity: 0.9;
+}
+
+.message,.stage
+{
+ border: 1px solid white;
+ background-color: white;
+ border-radius: 25px;
+ color: #f77373;
+ font-weight: 600;
+ text-align: center;
+ padding: 25px;
+ margin: 25px;
+ font-size: 24pt;
+box-shadow: 0px 0px 100px #505555;
+}
+
+.message
+{
+  padding-bottom: 50px;
+}
+
+.stage
+{
+  padding: 15px;
+}
+
+.element
+{
+ border: 1px solid white;
+ background-color: #f5f5f5; /* #06ac6d */
+ border-radius: 25px;
+ font-weight: 600;
+ padding: 5px;
+ padding-right: 20px;
+ margin: 5px;
+ font-size: 16pt;
+}
+
+b
+{
+  font-size: 36pt;
+  border: 1px solid #ffffa2;
+  border-radius: 5px 55px 5px 55px;
+  text-shadow: -1px 1px  #f77373;
+  box-shadow: 0px 0px 80px yellow;
+  padding: 4px;
+  color: #f57575;
+  background-color:  #ffffa2;
+  margin-bottom: 40px;
+}
+
+.cup
+{
+  font-size: 72pt;
+  margin: 5px;
+  margin-bottom: 40px;
+}
+small
+{
+  position: absolute;
+  left: 10%;
+  color: #06ac6d;
+}
+h5
+{
+  color: gray;
+  font-size: 14pt;
+}
+button
+{
+  font-size: 32pt;
+  word-wrap: break-word;
+  width: 50px;
+  height: 50px;
+  line-height: 0.2;
+  padding: 5px:
+  margin: 35px;
+}
+.menu
+{
+  display: none;
+  flex-direction: column;
+  margin: 5px;
+  width: max-content;
+}
+a
+{
+  text-decoration: none;
+  width: 100%;
+}
+
+.menu-item
+{
+  color: white;
+  background-color: gray;
+  border: 1px solid;
+  padding: 5px;
+  cursor: pointer;
+  opacity: 0.8;
+  display:block;
+}
+
+.menu-item:hover
+{
+  opacity: 1;
+}

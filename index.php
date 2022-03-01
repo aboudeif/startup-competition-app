@@ -35,7 +35,12 @@
 
       #---------------------------------------
       # طباعة اسماء الشركات المسجلة في المسابقة
-      
+      echo "<script>build(0,' اسماء الشركات المسجلة في المسابقة');</script>";
+        echo "<section><div class='stage' id='_0'><h3>اسماء الشركات المسجلة في المسابقة</h3></div>" ;
+        $sub_counter = 1;
+          foreach($data as $key => $value)
+            echo "<div class='element' dir='rtl'><span>".$sub_counter++ ."- ". $key . " </span></div>";
+          echo "</section>";
       #---------------------------------------
       # الحلقة التكرارية المسؤولة عن التقييم المتكرر للشركات حتي فوز شركة واحدة
       for($winner = $data,$counter = 1,$success_rate = 50; $success_rate > 0; $success_rate /= 2){

@@ -28,7 +28,7 @@
     </nav>
    <!-- التعريف بالمسابقة -->
     <?php
-	$json_file = file_get_content('competition.json');
+	$json_file = file_get_contents('competition.json');
 	$info = json_decode($json_file,true);
       echo "<section class='about'><h2>".$info['title']."</h2><img src='".$info['logo']."' /><h2>عن المسابقة</h2><p>".$info['info']."</p></section>";
 	       

@@ -31,21 +31,16 @@
       # قراءة البيانات الخاصة بالشركات المشتركة في المنافسة من ملف خارجي وتخزينها في مصفوفة
       $data_file = file_get_contents('json/companies_data.json');
       $data = json_decode($data_file,true);
-      # قراءة البيانات الخاصة بالشركات المشتركة في المنافسة من ملف خارجي وتخزينها في مصفوفة
+      # قراءة البيانات الخاصة بالمسابقة من ملف خارجي وتخزينها في مصفوفة
       $info_file = file_get_contents('json/competition.json');
       define('INFO', json_decode($info_file,true));
       
       echo "<section class='about'><h2>".$info['title']."</h2><img src='".$info['logo']."' /><h2>عن المسابقة</h2><p>".$info['info']."</p></section>";
-	       
-//       define('NOWINNER', 'لم تجتز أي شركة عتبة المرحلة');
-//       define('WINNER', 'الشركات الفائزة في المرحلة');
-    
 
-      
 	  
       # طباعة اسماء الشركات المسجلة في المسابقة
-      echo "<script>build(0,' اسماء الشركات المسجلة في المسابقة');</script>";
-        echo "<section><div class='stage' id='_0'><h3>اسماء الشركات المسجلة في المسابقة</h3></div>" ;
+      echo "<script>build(0,'".INFO['names']."');</script>";
+        echo "<section><div class='stage' id='_0'><h3>".INFO['names']."</h3></div>" ;
         $sub_counter = 1;
           foreach($data as $key => $value)
             echo "<div class='element' dir='rtl'><span>".$sub_counter++ ."- ". $key . " </span></div>";

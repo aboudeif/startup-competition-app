@@ -96,12 +96,16 @@
         # if no company success choose the one has minimum rate from the fail round
         if($winner['all_companies_failed']){
 		$winner_one = array_search(min($winner),$winner);
-		# print winner
-		print_winner($winner_one,$winner);
+		
 	}
 	# delete stage title and status
         unset($winner['stage_title']);
-        unset($winner['all_companies_failed']);	
+        unset($winner['all_companies_failed']);
+		
+	if(winner_one)
+		# print winner
+		print_winner($winner_one,$winner);
+		
 	# if there is one winner
         if(count($winner) == 1)
 		$winner_one = true;
@@ -167,8 +171,8 @@
         }
       }
 	  
-    # print partner's division
-    print_partner_division();
+     # print partner's division
+     print_partner_division();
     
     ?>
   </body>

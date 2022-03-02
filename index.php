@@ -109,7 +109,7 @@
 		
 	# if there is one winner
         if(count($winner) == 1)
-		$winner_one = $winner;
+		$winner_one = key($winner);
         if($winner_one)
 		print_congrats($winner_one);
 	return $winner_one;

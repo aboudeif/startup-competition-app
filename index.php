@@ -102,7 +102,7 @@
         unset($winner['stage_title']);
         unset($winner['all_companies_failed']);
 		
-	if(winner_one)
+	if($winner_one)
 		# print winner
 		print_winner($winner_one,$winner);
 		

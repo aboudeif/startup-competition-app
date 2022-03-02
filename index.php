@@ -28,80 +28,102 @@
     </nav>
    <!-- التعريف بالمسابقة -->
     <?php
-      # قراءة البيانات الخاصة بالشركات المشتركة في المنافسة من ملف خارجي وتخزينها في مصفوفة
+      # read company's names from a json file
       $data_file = file_get_contents('json/companies_data.json');
+      # store company's in an array
       $data = json_decode($data_file,true);
-      # قراءة البيانات الخاصة بالمسابقة من ملف خارجي وتخزينها في مصفوفة
+      # read app labels from json file
       $info_file = file_get_contents('json/competition.json');
+      # store labels in a constant array
       define('INFO', json_decode($info_file,true));
-      
+      # print about devision
       echo "<section class='about'><h2>".INFO['title']."</h2><img src='".INFO['logo']."' /><h2>".INFO['about']."</h2><p>".INFO['info']."</p></section>";
-
-	  
-      # طباعة اسماء الشركات المسجلة في المسابقة
+      # print registerd companies division title and generate its menu tab
       echo "<script>build(0,'".INFO['winners']."');</script>";
-        echo "<section><div class='stage' id='_0'><h3>".INFO['winners']."</h3></div>" ;
-        $sub_counter = 1;
-          foreach($data as $key => $value)
-            echo "<div class='element' dir='rtl'><span>".$sub_counter++ ."- ". $key . " </span></div>";
-          echo "</section>";
-
-      # الحلقة التكرارية المسؤولة عن التقييم المتكرر للشركات حتي فوز شركة واحدة
+      echo "<section><div class='stage' id='_0'><h3>".INFO['winners']."</h3></div>" ;
+      # print registerd companies
+      $sub_counter = 1;
+      foreach($data as $key => $value)
+         echo "<div class='element' dir='rtl'><span>".$sub_counter++ ."- ". $key . " </span></div>";
+      echo "</section>";
+      # a loop for evaluate companies and print winner's names
       for($winner = $data,$counter = 1,$success_rate = 50; $success_rate > 0; $success_rate /= 2){
-        # استدعاء الدالة المسؤولة عن تقييم الشركات و اختيار الشركات الناجحة
+        # companies evaluation call
         $winner = evaluate_companies($winner,$success_rate);
-//         $title = $winner['stage_title'];
+	# generate stage division menu tab
         echo "<script>build(".$counter.",'". $winner['stage_title']."');</script>";
+	# print stage division title 
         echo "<section><div class='stage' id='_".$counter."'><h3>". $winner['stage_title'] ." [ ".$counter++ ." ]</h3><h5>".INFO['threshold']."  ".$success_rate."% </h5></div>" ;
+	# print stage winners
         $sub_counter = 1;
           foreach($winner as $key => $value){
+	    # escape stage title and status
             if($key == 'all_companies_failed' || $key == 'stage_title')
               continue;
             echo "<div class='element' dir='rtl'><span>&#11088; ".$sub_counter++ ."- ". $key . " </span><small> ".$value."% </small></div>";
           }
-          echo "</section>";
+        echo "</section>";
+	# if no company success choose the one has minimum rate from the fail round
         if($winner['all_companies_failed']){
+	  # delete stage title and status
           unset($winner['stage_title']);
           unset($winner['all_companies_failed']);
           $winner_one = array_search(min($winner),$winner);
-
+	# print winner's division name
         echo "<section><div class='stage' id='_".$counter++."'><h3> ".INFO['winner']." </h3></div>" ;
-            echo "<div class='element' dir='rtl'><span>&#11088; 1- ". $winner_one . " </span><small> %".min($winner)." </small></div>";
-          echo "</section>";
-
+	# print winner's name
+        echo "<div class='element' dir='rtl'><span>&#11088; 1- ". $winner_one . " </span><small> %".min($winner)." </small></div>";
+        echo "</section>";
+	# generate its menu tab
 	echo "<script>build(-1,' ".INFO['message']." ');</script>";
+	# print congratulation message
         echo "<section><div class='message' id='_-1'><div class='cup'>&#129351;</div> ".INFO['congrats']." <b>&nbsp;&nbsp;".$winner_one."&nbsp;&nbsp;</b>  &#11088;&#127881;".INFO['one']." &#9996 </div></section>";
         break;
         }
+	# if there are winners
         else{
+	  # delete stage title
           unset($winner['stage_title']);
+	  # delete status
           unset($winner['all_companies_failed']);
+	  # if there is one winner
           if(count($winner) == 1){ 
-            
+            # generate its menu tab
 	    echo "<script>build(-1,' ".INFO['message']." ');</script>";
+	    # print congratulation message
             echo "<section><div class='message' id='_-1'><div class='cup'>&#129351;</div> ".INFO['congrats']." <b>&nbsp;&nbsp;".key($winner)."&nbsp;&nbsp;</b>  &#11088;&#127881;".INFO['one']." &#9996 </div></section>";
             break;
           }
         }
-        
       }
-
+      # companies evaluation function
       function evaluate_companies($data,$success_rate){
+	# loop throgh companies and rate it
         foreach($data as $key => $value){
           $data[$key] = rand(0,100);
+	  # check if company sucsses
           if($data[$key] < $success_rate)
+	    # add winner to winners array
             $winner[$key] = $data[$key];
         }
+	# if there are winners
         if(is_countable($winner)){
+	  # set stage title
           $winner['stage_title'] = INFO['winners'];
+	  # send them back
           return $winner;
         }
+	# if there are no winners
         else{
+	  # set group status to 'no winners'
           $data['all_companies_failed'] = true;
+	  # set stage title
           $data['stage_title'] = INFO['no_winner'];
+	  # return given group of companies with new rates
           return $data;
         }
       }
+    
     echo "<section class='partner'><h2>".INFO['partners']."</h2><div class='container'>";
     foreach(INFO['partner'] as $key=>$value)
     	echo "<span class='partner-item'><img src='".$value."' height='80px'><p>".$key."</p></span>";

@@ -93,13 +93,14 @@
 	
 	# a function to check winner if any
 	function check_winner($winner){
+	unset($winner['stage_title']);
         # if no company success choose the one has minimum rate from the fail round
         if($winner['all_companies_failed']){
 		$winner_one = array_search(min($winner),$winner);
 		
 	}
 	# delete stage title and status
-        unset($winner['stage_title']);
+        
         unset($winner['all_companies_failed']);
 		
 	if($winner_one)

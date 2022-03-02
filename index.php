@@ -38,15 +38,16 @@
       define('INFO', json_decode($info_file,true));
       # print about devision
       echo "<section class='about'><h2>".INFO['title']."</h2><img src='".INFO['logo']."' /><h2>".INFO['about']."</h2><p>".INFO['info']."</p></section>";
-      # print registerd companies division title and generate its menu tab
-      echo "<script>build(0,'".INFO['winners']."');</script>";
-      echo "<section><div class='stage' id='_0'><h3>".INFO['winners']."</h3></div>" ;
+      # generate registerd companies division's menu tab
+      echo "<script>build(0,'".INFO['names']."');</script>";
+      # print registerd companies division title
+      echo "<section><div class='stage' id='_0'><h3>".INFO['names']."</h3></div>" ;
       # print registerd companies
       $sub_counter = 1;
       foreach($data as $key => $value)
          echo "<div class='element' dir='rtl'><span>".$sub_counter++ ."- ". $key . " </span></div>";
       echo "</section>";
-      # a loop for evaluate companies and print winner's names
+      # evaluate companies and print winner's names
       for($winner = $data,$counter = 1,$success_rate = 50; $success_rate > 0; $success_rate /= 2){
         # companies evaluation call
         $winner = evaluate_companies($winner,$success_rate);

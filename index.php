@@ -98,7 +98,7 @@
       }
       # companies evaluation function
       function evaluate_companies($data,$success_rate){
-	# loop throgh companies and rate it
+	# rate companies
         foreach($data as $key => $value){
           $data[$key] = rand(0,100);
 	  # check if company sucsses
@@ -123,8 +123,9 @@
           return $data;
         }
       }
-    
+    # print partner's division
     echo "<section class='partner'><h2>".INFO['partners']."</h2><div class='container'>";
+    # print partners info 
     foreach(INFO['partner'] as $key=>$value)
     	echo "<span class='partner-item'><img src='".$value."' height='80px'><p>".$key."</p></span>";
     echo "</div></section>";

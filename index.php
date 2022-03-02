@@ -10,10 +10,13 @@
   </head>
   <body dir="rtl">
     <script>
+      // a function to generate menu tab
       function build(counter,title) {
         var stage_number = counter >= 1 ? " [ "+ counter +" ]" : "";
         document.getElementById('menu').innerHTML += "<a href='#_"+ counter +"' onClick='menu();'><div class='menu-item'> "+ title + stage_number +" </div></a>";
       }
+	    
+      // a function to display and hide menu
       function menu() {
         var menu = document.getElementById('menu');
         if(menu.style.display == 'flex')
@@ -22,10 +25,13 @@
           menu.style.display = 'flex';
       }
     </script>
+     
+<!--menu division -->
     <nav>
       <button class="menu-icon" onclick="menu();">---</button>
       <div class="menu" id="menu"></div>
     </nav>
+	  
     <?php
       # read company's names from a json file
       $data_file = file_get_contents('json/companies_data.json');
@@ -117,13 +123,10 @@
 	  
 	# a function to print winner division
 	function print_winner($winner_one, $winner){
-        # delete stage title and status
-        unset($winner['stage_title']);
-        unset($winner['all_companies_failed']);
 	# print winner's division name
         echo "<section><div class='stage' id='_".$counter++."'><h3> ".INFO['winner']." </h3></div>" ;
 	# print winner's name
-        echo "<div class='element' dir='rtl'><span>&#11088; 1- ". $winner_one . " </span><small> %".min($winner)." </small></div>";
+        echo "<div class='element' dir='rtl'><span>&#11088; 1- ". $winner_one . " </span><small> ".min($winner)." %</small></div>";
         echo "</section>";
 	}
 	  

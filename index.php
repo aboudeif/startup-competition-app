@@ -126,11 +126,11 @@
 	# print winner's division name
         echo "<section><div class='stage' id='_".$counter++."'><h3> ".INFO['winner']." </h3></div>" ;
 	# print winner's name
-        echo "<div class='element' dir='rtl'><span>&#11088; 1- ". $winner_one . " </span><small> ".min($winner)." %</small></div>";
+        echo "<div class='element' dir='rtl'><span>&#11088; 1- ". $winner_one . " </span><small> ".min($winner)."% </small></div>";
         echo "</section>";
 	}
 	  
-	# a function to printcongratulation message
+	# a function to print congratulation message
 	function print_congrats($winner_one){
 	# generate its menu tab
 	echo "<script>build(-1,' ".INFO['message']." ');</script>";

@@ -40,7 +40,7 @@
       print_about_devision();
 	      
       # print registerd companies division
-      print_registerd_companies();
+      print_registerd_companies($data);
 	      
       # evaluate companies and print winner's names
       for($winner = $data,$counter = 1,$success_rate = 50; $success_rate > 0; $success_rate /= 2){
@@ -90,7 +90,7 @@
       }
 
       # a function to print registerd companies division
-      function print_registerd_companies(){
+      function print_registerd_companies($data){
 	 # generate registerd companies division's menu tab
       	echo "<script>build(0,'".INFO['names']."');</script>";
       	# print registerd companies division title

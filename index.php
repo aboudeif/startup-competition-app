@@ -50,48 +50,19 @@
 	# print stage division
         $counter = print_stage($winner,$counter,$success_rate);
 	
-	# if no company success choose the one has minimum rate from the fail round
-        if($winner['all_companies_failed']){
-	  # delete stage title and status
-          unset($winner['stage_title']);
-          unset($winner['all_companies_failed']);
-          $winner_one = array_search(min($winner),$winner);
-	# print winner's division name
-        echo "<section><div class='stage' id='_".$counter++."'><h3> ".INFO['winner']." </h3></div>" ;
-	# print winner's name
-        echo "<div class='element' dir='rtl'><span>&#11088; 1- ". $winner_one . " </span><small> %".min($winner)." </small></div>";
-        echo "</section>";
-	# generate its menu tab
-	echo "<script>build(-1,' ".INFO['message']." ');</script>";
-	# print congratulation message
-        echo "<section><div class='message' id='_-1'><div class='cup'>&#129351;</div> ".INFO['congrats']." <b>&nbsp;&nbsp;".$winner_one."&nbsp;&nbsp;</b>  &#11088;&#127881;".INFO['one']." &#9996 </div></section>";
-        break;
+	# check winner
+	if(check_winner($winner))
+		break;
         }
-	# if there are winners
-        else{
-	  # delete stage title
-          unset($winner['stage_title']);
-	  # delete status
-          unset($winner['all_companies_failed']);
-	  # if there is one winner
-          if(count($winner) == 1){ 
-            # generate its menu tab
-	    echo "<script>build(-1,' ".INFO['message']." ');</script>";
-	    # print congratulation message
-            echo "<section><div class='message' id='_-1'><div class='cup'>&#129351;</div> ".INFO['congrats']." <b>&nbsp;&nbsp;".key($winner)."&nbsp;&nbsp;</b>  &#11088;&#127881;".INFO['one']." &#9996 </div></section>";
-            break;
-          }
-        }
-      }
 	  
-      # a function to print about devision
-      function print_about_devision(){
-      	echo "<section class='about'><h2>".INFO['title']."</h2><img src='".INFO['logo']."' /><h2>".INFO['about']."</h2><p>".INFO['info']."</p></section>";
-      }
+        # a function to print about devision
+        function print_about_devision(){
+      	  echo "<section class='about'><h2>".INFO['title']."</h2><img src='".INFO['logo']."' /><h2>".INFO['about']."</h2><p>".INFO['info']."</p></section>";
+        }
 
-      # a function to print registerd companies division
-      function print_registerd_companies($data){
-	 # generate registerd companies division's menu tab
+        # a function to print registerd companies division
+        function print_registerd_companies($data){
+	# generate registerd companies division's menu tab
       	echo "<script>build(0,'".INFO['names']."');</script>";
       	# print registerd companies division title
       	echo "<section><div class='stage' id='_0'><h3>".INFO['names']."</h3></div>" ;
@@ -100,7 +71,7 @@
       	foreach($data as $key => $value)
 	   echo "<div class='element' dir='rtl'><span>".$sub_counter++ ."- ". $key . " </span></div>";
       	echo "</section>";     
-      }
+        }
 	 
 	# a function to print stage division
         function print_stage($winner,$counter,$success_rate){
@@ -119,9 +90,57 @@
         echo "</section>";
 	return $counter;
         }
+	
+	# a function to check winner if any
+	function check_winner($winner){
+        # if no company success choose the one has minimum rate from the fail round
+        if($winner['all_companies_failed']){
+		$winner_one = array_search(min($winner),$winner);
+		# print winner
+		print_winner($winner_one,$winner);
+	}
+	# delete stage title and status
+        unset($winner['stage_title']);
+        unset($winner['all_companies_failed']);	
+	# if there is one winner
+        if(count($winner) == 1)
+		$winner_one = true;
+        if($winner_one)
+		print_congrats($winner_one);
+	return $winner_one;
+	 }
 	  
-      # companies evaluation function
-      function evaluate_companies($data,$success_rate){
+	# a function to print winner division
+	function print_winner($winner_one, $winner){
+        # delete stage title and status
+        unset($winner['stage_title']);
+        unset($winner['all_companies_failed']);
+	# print winner's division name
+        echo "<section><div class='stage' id='_".$counter++."'><h3> ".INFO['winner']." </h3></div>" ;
+	# print winner's name
+        echo "<div class='element' dir='rtl'><span>&#11088; 1- ". $winner_one . " </span><small> %".min($winner)." </small></div>";
+        echo "</section>";
+	}
+	  
+	# a function to printcongratulation message
+	function print_congrats($winner_one){
+	# generate its menu tab
+	echo "<script>build(-1,' ".INFO['message']." ');</script>";
+	# print congratulation message
+        echo "<section><div class='message' id='_-1'><div class='cup'>&#129351;</div> ".INFO['congrats']." <b>&nbsp;&nbsp;".$winner_one."&nbsp;&nbsp;</b>  &#11088;&#127881;".INFO['one']." &#9996 </div></section>";
+	 }
+	  
+	#  a function to print partner's division
+    	function print_partner_division(){
+    	echo "<section class='partner'><h2>".INFO['partners']."</h2><div class='container'>";
+    	# print partners info 
+    	foreach(INFO['partner'] as $key=>$value)
+    	echo "<span class='partner-item'><img src='".$value."' height='80px'><p>".$key."</p></span>";
+    	echo "</div></section>";
+	}
+	  
+      	# a function to evaluate companies
+      	function evaluate_companies($data,$success_rate){
 	# rate companies
         foreach($data as $key => $value){
           $data[$key] = rand(0,100);
@@ -147,12 +166,10 @@
           return $data;
         }
       }
+	  
     # print partner's division
-    echo "<section class='partner'><h2>".INFO['partners']."</h2><div class='container'>";
-    # print partners info 
-    foreach(INFO['partner'] as $key=>$value)
-    	echo "<span class='partner-item'><img src='".$value."' height='80px'><p>".$key."</p></span>";
-    echo "</div></section>";
+    print_partner_division();
+    
     ?>
   </body>
 </html>

@@ -30,15 +30,16 @@
 	      
       # print registerd companies division
       print_registerd_companies($data);
-	      
+      
       # evaluate companies and print winner's names
       for($winner = $data,$counter = 1,$success_rate = 50; $success_rate > 0; $success_rate /= 2){
-        
+        $old_winners = array_keys($winner);
         # evaluate companies
         $winner = evaluate_companies($winner,$success_rate);
-	      
-	      # print stage division
-        $counter = print_stage($winner,$counter,$success_rate);
+        # print stage division
+        $new_winners = array_keys($winner);
+        $loser = array_diff($old_winners,$new_winners);
+        $counter = print_stage($winner,$loser,$counter,$success_rate);
 	
       	# check winner
       	if(check_winner($winner))

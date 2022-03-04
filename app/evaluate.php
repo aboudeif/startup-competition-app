@@ -2,6 +2,8 @@
 
 # a function to evaluate companies
 function evaluate_companies($data,$success_rate){
+  unset($data['stage_title']);
+  unset($data['all_companies_failed']);
 	# rate companies
   foreach($data as $key => $value){
     $data[$key] = rand(0,100);
@@ -11,7 +13,7 @@ function evaluate_companies($data,$success_rate){
      }
 	# if there are winners set stage title
   if(is_countable($winner)){
-    $winner['stage_title'] = INFO['winners'];
+    $winner['stage_title'] = INFO['stage'];
 	  # send them back
     return $winner;
       }
@@ -35,9 +37,6 @@ function evaluate_companies($data,$success_rate){
 	      }
 	# delete stage title and status
   unset($winner['all_companies_failed']);
-  # if no company success print winner
-	if($winner_one)
-		print_winner($winner_one,$winner);
 	# if there is one winner
   if(count($winner) == 1)
 		$winner_one = key($winner);

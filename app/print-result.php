@@ -17,7 +17,9 @@ function print_stage($winner,$loser,$counter,$success_rate){
     # set winner = company with minimum sccess rate
     $winner =  array(array_search(min($pre_winner),$pre_winner)=>min($pre_winner));
     # set loser = the rest of not succeed companies
-    $loser = array_flip(array_diff($pre_winner,$winner));
+    $loser = $pre_winner;
+    unset($loser[array_search(min($pre_winner),$pre_winner)]);
+    $loser = array_flip($loser);
   }
   # print stage winners
   $sub_counter = 1;
